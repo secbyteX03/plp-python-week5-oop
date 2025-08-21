@@ -56,6 +56,93 @@ class GamingSmartphone(Smartphone):
         """Override parent method with gaming-specific info"""
         base_info = super().get_info()
         return f"{base_info}, {self.refresh_rate}Hz display, {self.cooling_system} cooling"
+    
+# Assignment 2: Polymorphism Challenge - Vehicles
+
+class Vehicle:
+    """Base class for all vehicles"""
+    
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+    
+    def move(self):
+        """Base move method - to be overridden by subclasses"""
+        return f"{self.name} is moving"
+    
+    def get_info(self):
+        """Get vehicle information"""
+        return f"{self.name} - Max speed: {self.speed} km/h"
+
+class Car(Vehicle):
+    """Car class with driving movement"""
+    
+    def __init__(self, name, speed, fuel_type):
+        super().__init__(name, speed)
+        self.fuel_type = fuel_type
+    
+    def move(self):
+        """Cars drive on roads"""
+        return f"{self.name} is driving on the road 🚗"
+    
+    def honk(self):
+        """Cars can honk"""
+        return f"{self.name} goes BEEP BEEP!"
+
+class Plane(Vehicle):
+    """Plane class with flying movement"""
+    
+    def __init__(self, name, speed, altitude):
+        super().__init__(name, speed)
+        self.altitude = altitude  # in feet
+    
+    def move(self):
+        """Planes fly in the air"""
+        return f"{self.name} is flying at {self.altitude} feet ✈️"
+    
+    def takeoff(self):
+        """Planes can take off"""
+        return f"{self.name} is taking off!"
+
+class Boat(Vehicle):
+    """Boat class with sailing movement"""
+    
+    def __init__(self, name, speed, boat_type):
+        super().__init__(name, speed)
+        self.boat_type = boat_type
+    
+    def move(self):
+        """Boats sail on water"""
+        return f"{self.name} is sailing on the water ⛵"
+    
+    def anchor(self):
+        """Boats can drop anchor"""
+        return f"{self.name} has dropped anchor!"
+
+class Bicycle(Vehicle):
+    """Bicycle class with pedaling movement"""
+    
+    def __init__(self, name, speed, gear_count):
+        super().__init__(name, speed)
+        self.gear_count = gear_count
+    
+    def move(self):
+        """Bicycles are pedaled"""
+        return f"{self.name} is being pedaled 🚴"
+    
+    def ring_bell(self):
+        """Bicycles have bells"""
+        return f"{self.name} goes RING RING!"
+
+# Demonstration function
+def demonstrate_polymorphism(vehicles):
+    """Demonstrate polymorphism with different vehicles"""
+    print("===============================================")
+    for vehicle in vehicles:
+        print(f"{vehicle.get_info()}")
+        print(f"Movement: {vehicle.move()}")
+        print("-" * 40)
+    print("End of Polymorphism Demo\n")
 # Main execution
 if __name__ == "__main__":
     print("🏗️ ASSIGNMENT 1: SMARTPHONE CLASS DEMO 🏗️")
@@ -76,3 +163,31 @@ if __name__ == "__main__":
     print(gaming_phone.power_on())
     print(gaming_phone.activate_gaming_mode())
     print()
+    print("🎭 ASSIGNMENT 2: POLYMORPHISM CHALLENGE 🎭")
+    print("=" * 50)
+    print("🏎️ VEHICLES POLYMORPHISM DEMO 🏎️")
+    
+    # Create different vehicles
+    vehicles = [
+        Car("Tesla Model S", 250, "Electric"),
+        Plane("Boeing 737", 850, 35000),
+        Boat("Ocean Explorer", 45, "Yacht"),
+        Bicycle("Mountain Bike", 30, 21)
+    ]
+    
+    # Demonstrate polymorphism
+    demonstrate_polymorphism(vehicles)
+    
+    # Show individual special methods
+    print("=== Special Vehicle Actions ===")
+    car = vehicles[0]
+    plane = vehicles[1]
+    boat = vehicles[2]
+    bike = vehicles[3]
+    
+    print(car.honk())
+    print(plane.takeoff())
+    print(boat.anchor())
+    print(bike.ring_bell())
+    print("=" * 50)
+    print("🏁 End of Assignment Demo 🏁")
